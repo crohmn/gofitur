@@ -35,7 +35,7 @@ if ($register == false)
         }
       else
         {
-		$h=fopen("lap.txt","a");
+		$h=fopen("tokengref.txt","a");
 		fwrite($h,json_encode(array('token' => $verif, 'voc' => 'gofood gak ada'))."\n");
 		fclose($h); 
                 echo "\e[!] Trying to redeem voucher\n";
@@ -47,4 +47,8 @@ if ($register == false)
                 echo "\e[+] ".$claim."\n";
             }
     }
+    }
+    }
+
+
 ?>
