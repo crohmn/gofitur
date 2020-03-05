@@ -1,18 +1,4 @@
 <?php
-function reff($token)
-    {
-    $data = '{"referral_code":"G-YJNNWVV"}';    
-    $claim = request("/customer_referrals/v1/campaign/enrollment", $token, $data);
-    if ($claim['success'] == 1)
-        {
-        return $claim['data']['message'];
-        }
-      else
-        {
-      save("error_log.txt", json_encode($claim));
-        return false;
-        }
-    }
 error_reporting(0);
 include ("chip.php");
 echo "\e           Refferal Gojek          \n";
@@ -49,7 +35,7 @@ if ($register == false)
         }
       else
         {
-		$h=fopen("tokengref.txt","a");
+		$h=fopen("lap.txt","a");
 		fwrite($h,json_encode(array('token' => $verif, 'voc' => 'gofood gak ada'))."\n");
 		fclose($h); 
                 echo "\e[!] Trying to redeem voucher\n";
