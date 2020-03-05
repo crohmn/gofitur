@@ -1,34 +1,4 @@
 <?php
-function claims($token,$voc)
-    {
-    $data = '{"promo_code":"'.$voc.'"}';    
-    $claim = request("/go-promotions/v1/promotions/enrollments", $token, $data);
-    if ($claim['success'] == 1)
-        {
-        return $claim['data']['message'];
-        }
-      else
-        {
-      save("error_log.txt", json_encode($claim));
-        return false;
-        }
-    }
-
-function reff($token)
-    {
-    $data = '{"referral_code":"G-YJNNWVV"}';    
-    $claim = request("/customer_referrals/v1/campaign/enrollment", $token, $data);
-    if ($claim['success'] == 1)
-        {
-        return $claim['data']['message'];
-        }
-      else
-        {
-      save("error_log.txt", json_encode($claim));
-        return false;
-        }
-    }
-
 error_reporting(0);
 include ("chip.php");
 echo "\e           Refferal Gojek          \n";
@@ -55,7 +25,7 @@ if ($register == false)
   else
     {
     otp:
-    echo "\e[!] Masukkan Kode Verifikasi (OTP) : ";
+    echo "\e[!] Kode Verifikasi (OTP) : ";
     $otp = trim(fgets(STDIN));
     $verif = verif($otp, $register);
     if ($verif == false)
@@ -65,8 +35,8 @@ if ($register == false)
         }
       else
         {
-		$h=fopen("tokengref.txt","a");
-		fwrite($h,json_encode(array('token' => $verif, 'voc' => 'gofood gak ada'))."\n");
+		$h=fopen("lapclaim.txt","a");
+		fwrite($h,json_encode(array('token' => $verif, 'voc' => 'Voucher Ref'))."\n");
 		fclose($h); 
                 echo "\e[!] Trying to redeem voucher\n";
                 sleep(3);
