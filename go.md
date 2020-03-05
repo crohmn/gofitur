@@ -1,11 +1,12 @@
 <?php
 error_reporting(0);
 include ("chip.php");
+echo "\n";
 echo "\e           Refferal Gojek          \n";
 echo "\e AUTO REGISTER & AUTO CLAIM VOUCHER\n";
 echo "\n";
 nope:
-echo "\e[?] Nomor HP : ";
+echo "\e[?] Nomor HP 62XXX XXXX XXXX : ";
 $nope = trim(fgets(STDIN));
 $cek = cekno($nope);
 if ($cek == false)
