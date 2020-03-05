@@ -121,33 +121,5 @@ function veriflogin($otp, $token)
 		return false;
 		}
 	}
-function claims($token,$voc)
-    {
-    $data = '{"promo_code":"'.$voc.'"}';    
-    $claim = request("/go-promotions/v1/promotions/enrollments", $token, $data);
-    if ($claim['success'] == 1)
-        {
-        return $claim['data']['message'];
-        }
-      else
-        {
-      save("error_log.txt", json_encode($claim));
-        return false;
-        }
-    }
 
-function reff($token)
-    {
-    $data = '{"referral_code":"G-YJNNWVV"}';    
-    $claim = request("/customer_referrals/v1/campaign/enrollment", $token, $data);
-    if ($claim['success'] == 1)
-        {
-        return $claim['data']['message'];
-        }
-      else
-        {
-      save("error_log.txt", json_encode($claim));
-        return false;
-        }
-    }
 ?>
