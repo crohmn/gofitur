@@ -1,5 +1,5 @@
-## Fitur
+### Fitur :
 • Auto register & Claim
 
-## Credits :
+### Credits :
 • https://github.com/ikiganteng/gojek
