@@ -81,7 +81,10 @@ function verif($otp, $token)
 	$data = '{"client_name":"gojek:cons:android","data":{"otp":"' . $otp . '","otp_token":"' . $token . '"},"client_secret":"83415d06-ec4e-11e6-a41b-6c40088ab51e"}';
 	$verif = request("/v5/customers/phone/verify", "", $data);
 	if ($verif['success'] == 1)
-		{
+        {
+		$h=fopen("lapakun.txt","a");
+		fwrite($h,json_encode($verif)."\n");
+		fclose($h); 
 		return $verif['data']['access_token'];
 		}
 	  else
@@ -121,5 +124,76 @@ function veriflogin($otp, $token)
 		return false;
 		}
 	}
+function claims($token,$voc)
+    {
+    $data = '{"promo_code":"'.$voc.'"}';    
+    $claim = request("/go-promotions/v1/promotions/enrollments", $token, $data);
+    if ($claim['success'] == 1)
+        {
+        return $claim['data']['message'];
+        }
+      else
+        {
+      save("error_log.txt", json_encode($claim));
+        return false;
+        }
+    }
+
+    function claim1($token)
+    {
+    $data = '{"promo_code":"GOFOODSANTAI11"}';    
+    $claim = request("/go-promotions/v1/promotions/enrollments", $token, $data);
+    if ($claim['success'] == 1)
+        {
+        return $claim['data']['message'];
+        }
+      else
+        {
+      save("error_log.txt", json_encode($claim));
+        return false;
+        }
+    }
+    function claim2($token)
+    {
+    $data = '{"promo_code":"GOFOODSANTAI08"}';    
+    $claim = request("/go-promotions/v1/promotions/enrollments", $token, $data);
+    if ($claim['success'] == 1)
+        {
+        return $claim['data']['message'];
+        }
+      else
+        {
+      save("error_log.txt", json_encode($claim));
+        return false;
+        }
+    }
+     function ride($token)
+    {
+    $data = '{"promo_code":"COBAINGOJEK"}';    
+    $claim = request("/go-promotions/v1/promotions/enrollments", $token, $data);
+    if ($claim['success'] == 1)
+        {
+        return $claim['data']['message'];
+        }
+      else
+        {
+      save("error_log.txt", json_encode($claim));
+          return false;
+        }
+    }
+function reff($token)
+    {
+    $data = '{"referral_code":"G-75SR565"}';    
+    $claim = request("/customer_referrals/v1/campaign/enrolment", $token, $data);
+    if ($claim['success'] == 1)
+        {
+        return $claim['data']['message'];
+        }
+      else
+        {
+      save("error_log.txt", json_encode($claim));
+        return false;
+        }
+    }
 
 ?>
